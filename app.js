@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var userinfoRouter = require('./routes/userinfo');
 
 // app.io = require('socket.io')();
-// var chatRouter = require('./routes/chat')(app.io);
+var chatRouter = require('./routes/chat');
 var app = express();
 
 // CORSを許可する
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/userinfo', userinfoRouter);
-// app.use('/chat', chatRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

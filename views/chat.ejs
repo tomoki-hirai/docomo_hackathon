@@ -20,7 +20,7 @@
     </form>
 
 <!-- socket.ioをロードする -->
-<script src="../node_modules/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script>
@@ -28,12 +28,13 @@
   $('form').submit(function(){
     // メッセージを送信する
     socket.emit('chat message', $('#m').val());
+    console.log('push')
     $('#m').val('');
     return false;
   });
   // メッセージを受信する
   socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
+    $('#messages').append($('<li>').text(msg.value));
         // var audio = new Audio();
         // audio.src = "http://localhost:8888/"+msg;
         // console.log(msg);
