@@ -1,20 +1,24 @@
+<!doctype html>
 <html lang="ja">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-  <link rel='stylesheet' href='../public/stylesheets/main.css'>
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="../public/javascripts/main.js"></script>
-</head>
-<body>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='../public/stylesheets/main.css'>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../public/javascripts/main.js"></script>
+  </body>
+</html>
+<!--Bootstrap４に必要なCSSとJavaScriptを読み込み-->
 <header class="page-heading">
   <div class="container">
-    <h1>Mr.TRY</h1>
-    <p>A Bootstrap 4 example layout with an about section and team members</p>
+    <h1>Government</h1>
   </div>
 </header>
 <ul class="nav nav-tabs nav-justified">
@@ -27,47 +31,100 @@
 </ul>
 <!--タブの中身-->
 <div class="tab-content">
-  <script type="text/javascript">
-    alert("Hello");
-  </script>
   <div id="tab1" class="tab-pane active">
     <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid">
       <!-- Team Members Row -->
       <div class="row">
-        <div class="col-lg-12">
-          <h2 class="my-4">立候補者一覧</h2>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="card img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <div class="card-body">
-            <h4 class="card-title">John Doe</h4>
-            <p class="card-text">Some example text.</p>
-            <a href="#" class="btn btn-primary">See Profile</a>
-          </div>
-        </div>
+        <div id = "text1"></div>
+          <script>
+            getLimit()
+            function getLimit(){
+              hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=2"
+              var url = hostURL; // リクエスト先URL
+              var request = new XMLHttpRequest();
+              request.onreadystatechange = function () {
+                if (request.readyState != 4) {
+                  // リクエスト中
+                } else if (request.status != 200) {
+                  // 失敗
+                } else {
+                  // 取得成功
+                  var results = JSON.parse(request.responseText);
+                  // document.getElementById("text").innerHTML = str(results)
+                  for (var i = 0; i < results.length; i++){
+                    id=results[i].id;
+                    pict=results[i].pict;
+                    name=results[i].name;
+                    good=results[i].good;
+                    addr=results[i].addr;
+                    // document.write()
+                    document.getElementById("text1").innerHTML +=
+                    '<div class="col-lg-4 col-sm-4 text-center mb-4">\
+                    <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
+                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>\
+                        <p class="card-text">Some example text.</p>\
+                        <a href="#" class="btn btn-primary">See Profile</a>\
+                      </div>\
+                    </div>'
+                  }
+
+                }
+              };
+              request.response = 'json';
+              request.open('GET', url);
+              request.send(null);
+            }
+          </script>
       </div>
     </div>
   </div>
   <div id="tab2" class="tab-pane">
     <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid">
       <!-- Team Members Row -->
       <div class="row">
-        <div class="col-lg-12">
-          <h2 class="my-4">思想家一覧</h2>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="card img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <div class="card-body">
-            <h4 class="card-title">John Doe</h4>
-            <p class="card-text">Some example text.</p>
-            <a href="#" class="btn btn-primary">See Profile</a>
-          </div>
-        </div>
+        <div id = "text2"></div>
+          <script>
+            getLimit()
+            function getLimit(){
+              hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=3"
+              var url = hostURL; // リクエスト先URL
+              var request = new XMLHttpRequest();
+              request.onreadystatechange = function () {
+                if (request.readyState != 4) {
+                  // リクエスト中
+                } else if (request.status != 200) {
+                  // 失敗
+                } else {
+                  // 取得成功
+                  var results = JSON.parse(request.responseText);
+                  // document.getElementById("text").innerHTML = str(results)
+                  for (var i = 0; i < results.length; i++){
+                    id=results[i].id;
+                    pict=results[i].pict;
+                    console.log(pict)
+                    name=results[i].name;
+                    good=results[i].good;
+                    addr=results[i].addr;
+                    document.getElementById("text2").innerHTML +=
+                    '<div class="col-lg-4 col-sm-4 text-center mb-4">\
+                      <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
+                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>\
+                        <p class="card-text">Some example text.</p>\
+                        <a href="#" class="btn btn-primary">See Profile</a>\
+                      </div>\
+                    </div>'
+                  }
+
+                }
+              };
+              request.response = 'json';
+              request.open('GET', url);
+              request.send(null);
+            }
+          </script>
       </div>
     </div>
   </div>
 </div>
-</body>
-</html>
