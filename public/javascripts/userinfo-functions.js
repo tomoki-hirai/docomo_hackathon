@@ -8,31 +8,73 @@ const connection = mysql.createConnection({
 });
 // table名
 const user_inofo_table = 'user_info';
-const sale_table = 'sale';
+const detail_info_table = 'deteal_info';
+const overview_table = 'overview'
 
 // colum名
-const user_info_column = ['id','mail','property','name','good','addr'];
-const sale_column = ['id','sales'];
+const user_info_column = ['id','mail','property_id','name','good','addr'];
+const detail_info_column = ['id','detal','title','viwe_no'];
+const overview_column = ['id','party_tag','commitment','tag_abs_1','tag_abs_2','tag_abs_3']
 
 module.exports.userinfo = function(req,res){
-
-    sql = 'SELECT * FROM ' + user_inofo_table + ';';
-    // // nameがあるか
-    // if(req.query.name == undefined){
-    //     sql = 'SELECT * FROM ' + stock_table + ' order by ' + stock_column[0] + ';';
-    // }else{
-    //     sql = 'SELECT * FROM ' + stock_table + ' where ' + stock_column[0] + '=' + '\''+ req.query.name +'\'' + ';'; 
-    // }
+    if(req.query.addr != undefined){
+        if(req.query.property_id != undefined){
+            // 住所と立候補者が指定されている
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ' and ' 
+                + user_info_column[2] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
+            // sql = 'SELECT * FROM ' + stock_table + ' order by ' + stock_column[0] + ';';
+        }else{
+            // 住所だけが指定されている
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ';'; 
+        }
+    }else{
+        if(req.query.property_id != undefined){
+            // 立候補者だけが指定があるか
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[2] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
+        }else{
+            // 何も指定なし
+            sql = 'SELECT * FROM ' + user_inofo_table + ';';
+        }
+    }
     console.log(sql);
 
     str = ''
     connection.query(sql,function (error, results, fields) {
         if (error) throw error;
-        // let string= JSON.stringify(results);
-        // let json =  JSON.parse(string);
-        // for(let i = 0; i<json.length; i++){
-        //     str = str + json[i].name + ': ' + json[i].amount + '\n';
-        // }
+        console.log(str)
+        res.send(results)
+        return str;
+    });
+}
+
+module.exports.userinfo_detail = function(req,res){
+    if(req.query.id == undefined){
+        res.status(404).send('Sorry cant find that!');
+        return;
+    }
+    sql = 'SELECT * FROM ' + detail_info_table + ' where ' + detail_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    console.log(sql);
+
+    str = ''
+    connection.query(sql,function (error, results, fields) {
+        if (error) throw error;
+        console.log(str)
+        res.send(results)
+        return str;
+    });
+}
+
+module.exports.overview = function(req,res){
+    if(req.query.id == undefined){
+        res.status(404).send('Sorry cant find that!');
+        return;
+    }
+    sql = 'SELECT * FROM ' + overview_table + ' where ' + overview_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    console.log(sql);
+
+    str = ''
+    connection.query(sql,function (error, results, fields) {
+        if (error) throw error;
         console.log(str)
         res.send(results)
         return str;

@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
   // if(req.query.function == 'addstock'){
   //   console.log('addstock')
   //   res.send(stock.addstock(req));
-  // }else if(req.query.function == 'checkstock'){
+  // }
+  // else if(req.query.function == 'checkstock'){
   //   stock.checkstock(req,res);
   // }else if(req.query.function == 'sell'){
   //   res.send(stock.sell(req));
@@ -20,6 +21,12 @@ router.get('/', function(req, res, next) {
   // }else{
   //   res.send('EROOR')
   // }
+});
+router.get('/detail', function(req, res, next) {
+  userinfo.userinfo_detail(req,res)
+});
+router.get('/overview', function(req, res, next) {
+  userinfo.overview(req,res)
 });
 
 module.exports = router;
