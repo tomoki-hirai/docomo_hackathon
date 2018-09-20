@@ -11,8 +11,8 @@ body, html {
 }
 
 .card-container.card {
-    width: 500px;
-    height: 800px;
+    width: 600px;
+    height: 1150px;
     padding: 40px 40px;
 }
 
@@ -44,20 +44,22 @@ body, html {
 }
 
 .profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 20px;
+    margin-top: 50px;
+    margin-left: 190px;
     display: block;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
 /*
  * Form styles
  */
 .profile-name-card {
-    font-size: 16px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     margin: 10px 0 0;
@@ -87,6 +89,7 @@ body, html {
     direction: ltr;
     height: 88px;
     font-size: 32px;
+    margin-top: 40px;
 }
 
 .form-signin input[type=email],
@@ -118,8 +121,8 @@ body, html {
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
-    font-size: 28px;
-    height: 52px;
+    font-size: 40px;
+    height: 65px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
