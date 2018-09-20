@@ -27,7 +27,7 @@ router.get('/thread_list', function(req, res, next) {
   chat.thread_list(req,res)
 });
 router.get('/thread', function(req, res, next) {
-  userinfo.thread(req,res)
+  chat.thread(req,res)
 });
 
 module.exports = router;
