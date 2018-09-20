@@ -8,11 +8,11 @@ const connection = mysql.createConnection({
 });
 // table名
 const user_inofo_table = 'user_info';
-const sale_table = 'sale';
+const detail_info_table = 'detail_info';
 
 // colum名
 const user_info_column = ['id','mail','property_id','name','good','addr'];
-const sale_column = ['id','sales'];
+const detail_info_column = ['id','detal','title','viwe_no'];
 
 module.exports.userinfo = function(req,res){
     // 住所の指定があるか
@@ -34,11 +34,19 @@ module.exports.userinfo = function(req,res){
     str = ''
     connection.query(sql,function (error, results, fields) {
         if (error) throw error;
-        // let string= JSON.stringify(results);
-        // let json =  JSON.parse(string);
-        // for(let i = 0; i<json.length; i++){
-        //     str = str + json[i].name + ': ' + json[i].amount + '\n';
-        // }
+        console.log(str)
+        res.send(results)
+        return str;
+    });
+}
+
+module.exports.userinfo_detail = function(req,res){
+    sql = 'SELECT * FROM ' + detail_info_table + ' where ' + user_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    console.log(sql);
+
+    str = ''
+    connection.query(sql,function (error, results, fields) {
+        if (error) throw error;
         console.log(str)
         res.send(results)
         return str;

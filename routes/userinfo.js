@@ -22,5 +22,8 @@ router.get('/', function(req, res, next) {
   //   res.send('EROOR')
   // }
 });
+router.get('/detail', function(req, res, next) {
+  userinfo.userinfo_detail(req,res)
+});
 
 module.exports = router;
