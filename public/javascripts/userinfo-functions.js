@@ -8,26 +8,31 @@ const connection = mysql.createConnection({
 });
 // table名
 const user_inofo_table = 'user_info';
-const detail_info_table = 'detail_info';
+const detail_info_table = 'deteal_info';
 
 // colum名
 const user_info_column = ['id','mail','property_id','name','good','addr'];
 const detail_info_column = ['id','detal','title','viwe_no'];
 
 module.exports.userinfo = function(req,res){
-    // 住所の指定があるか
     if(req.query.addr != undefined){
-        // 立候補者の指定があるか
         if(req.query.property_id != undefined){
+            // 住所と立候補者が指定されている
             sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ' and ' 
-                + user_info_column[0] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
+                + user_info_column[2] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
             // sql = 'SELECT * FROM ' + stock_table + ' order by ' + stock_column[0] + ';';
         }else{
+            // 住所だけが指定されている
             sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ';'; 
         }
     }else{
-        sql = 'SELECT * FROM ' + user_inofo_table + ';';
-        // sql = 'SELECT * FROM ' + user_inofo_table + ' order by ' + stock_column[0] + ';';
+        if(req.query.property_id != undefined){
+            // 立候補者だけが指定があるか
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[2] + '=' + '\''+ req.query.password +'\'' + ';'; 
+        }else{
+            // 何も指定なし
+            sql = 'SELECT * FROM ' + user_inofo_table + ';';
+        }
     }
     console.log(sql);
 
@@ -41,7 +46,10 @@ module.exports.userinfo = function(req,res){
 }
 
 module.exports.userinfo_detail = function(req,res){
-    sql = 'SELECT * FROM ' + detail_info_table + ' where ' + user_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    if(req.query.id == undefined){
+        res.status(404).send('Sorry cant find that!');
+    }
+    sql = 'SELECT * FROM ' + detail_info_table + ' where ' + detail_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
     console.log(sql);
 
     str = ''
