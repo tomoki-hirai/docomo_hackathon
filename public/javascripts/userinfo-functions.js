@@ -11,18 +11,24 @@ const user_inofo_table = 'user_info';
 const sale_table = 'sale';
 
 // colum名
-const user_info_column = ['id','mail','property','name','good','addr'];
+const user_info_column = ['id','mail','property_id','name','good','addr'];
 const sale_column = ['id','sales'];
 
 module.exports.userinfo = function(req,res){
-
-    sql = 'SELECT * FROM ' + user_inofo_table + ';';
-    // // nameがあるか
-    // if(req.query.name == undefined){
-    //     sql = 'SELECT * FROM ' + stock_table + ' order by ' + stock_column[0] + ';';
-    // }else{
-    //     sql = 'SELECT * FROM ' + stock_table + ' where ' + stock_column[0] + '=' + '\''+ req.query.name +'\'' + ';'; 
-    // }
+    // 住所の指定があるか
+    if(req.query.addr != undefined){
+        // 立候補者の指定があるか
+        if(req.query.property_id != undefined){
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ' and ' 
+                + user_info_column[0] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
+            // sql = 'SELECT * FROM ' + stock_table + ' order by ' + stock_column[0] + ';';
+        }else{
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ';'; 
+        }
+    }else{
+        sql = 'SELECT * FROM ' + user_inofo_table + ';';
+        // sql = 'SELECT * FROM ' + user_inofo_table + ' order by ' + stock_column[0] + ';';
+    }
     console.log(sql);
 
     str = ''
