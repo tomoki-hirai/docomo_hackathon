@@ -1,3 +1,4 @@
+/*
 button {
     width: 100px;
     height: 40px;
@@ -5,8 +6,75 @@ button {
     background-color: white;
     color: #000000;
 }
-
 .active {
     background-color: red;
     color: white;
 }
+ */
+
+button {
+    font-size: 40px;
+    position: relative; left: 65px;
+    position: relative; top: 25px;
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 10px;
+    transition: .4s;
+    }
+.active {
+    background: #67c5ff;
+    color: white;
+}
+
+.square_btn{
+    position: relative; left: 255px;
+    position: relative; top: 80px;
+    font-size: 30px;
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: double 4px #67c5ff;
+    /*border: dashed 1px #67c5ff;*/
+    border-radius: 20px;
+    transition: .4s;
+}
+
+.square_btn:hover {
+    border-style: dotted;
+    color: #679efd;
+}
+
+/*
+#site-box {
+    width : 100%;
+     height:100%;
+    display: inline-block;
+     background: #0040FF;
+}
+*/
+/*
+html {
+    width: 375px;
+    height:667px;
+    display: inline-block;
+    background: #3ADF00;
+}
+*/
+/*
+body {
+    width:500px;
+    height:1000px;
+    background: #FF0000;
+    display: inline-block;
+}
+

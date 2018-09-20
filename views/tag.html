@@ -2,14 +2,25 @@
 <html>
     <head>
         <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-        <link rel="stylesheet" href="./tag.css" type="text/css" />
-        <title>HTML, CSS and JavaScript demo</title>
+        <!--絶対パス！！！！！！！-->
+        <link rel="stylesheet" href="/Users/ryoya/docomo/docomo_hackathon/public/stylesheets/tag.css" type="text/css" />
+        <title>ジャンルを選んでね</title>
     </head>
     <body>
-        <button id="button1">経済</button>
-        <button id="button2">福祉</button>
-        <button id="button3">インフラ</button>
-        <button id="button4">税金</button>
+        <div id="site-box">
+        <button id="button1">国際情勢</button>
+        <button id="button2">国内情勢</button>
+        <button id="button3">税率</button>
+        <button id="button4">育児</button>
+        <button id="button5">災害</button>
+        <button id="button6">労働環境</button>
+        <button id="button7">医療</button>
+        <button id="button8">総理大臣</button>
+        <button id="button9">軍事</button>
+        <button id="button10">教育</button>
+        <button class="square_btn"onclick="nextpage()">次へ進む</button>
+       <!-- <input type="button" value="次へ進む" class="square_btn"onclick="nextpage()">-->
+        </div>
     </body>
     <script>
     /*$(function(){
@@ -19,16 +30,19 @@
     $(this).addClass('active');
     });
     });*/
-                    var sampleElement1 = document.getElementById('button1');
-                    sampleElement1.onclick = function() {
-                        // ここに#buttonをクリックしたら発生させる処理を記述する
-                        if(sampleElement1.classList.contains('active')){
-                    sampleElement1.classList.remove('active');
-                        }
-                        else{
-                    sampleElement1.classList.add('active');
-                        }
-                    };
+    function nextpage(){
+        location.href = "/Users/ryoya/docomo/docomo_hackathon/views/main.html";
+    }
+    var sampleElement1 = document.getElementById('button1');
+    sampleElement1.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement1.classList.contains('active')){
+    sampleElement1.classList.remove('active');
+        }
+        else{
+    sampleElement1.classList.add('active');
+        }
+    };
     var sampleElement2 = document.getElementById('button2');
     sampleElement2.onclick = function() {
         // ここに#buttonをクリックしたら発生させる処理を記述する
@@ -59,6 +73,65 @@
             sampleElement4.classList.add('active');
         }
     };
-
+    var sampleElement5 = document.getElementById('button5');
+    sampleElement5.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement5.classList.contains('active')){
+            sampleElement5.classList.remove('active');
+        }
+        else{
+            sampleElement5.classList.add('active');
+        }
+    };
+    var sampleElement6 = document.getElementById('button6');
+    sampleElement6.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement6.classList.contains('active')){
+            sampleElement6.classList.remove('active');
+        }
+        else{
+            sampleElement6.classList.add('active');
+        }
+    };
+    var sampleElement7 = document.getElementById('button7');
+    sampleElement7.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement7.classList.contains('active')){
+            sampleElement7.classList.remove('active');
+        }
+        else{
+            sampleElement7.classList.add('active');
+        }
+    };
+    var sampleElement8 = document.getElementById('button8');
+    sampleElement8.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement8.classList.contains('active')){
+            sampleElement8.classList.remove('active');
+        }
+        else{
+            sampleElement8.classList.add('active');
+        }
+    };
+    var sampleElement9 = document.getElementById('button9');
+    sampleElement9.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement9.classList.contains('active')){
+            sampleElement9.classList.remove('active');
+        }
+        else{
+            sampleElement9.classList.add('active');
+        }
+    };
+    var sampleElement10 = document.getElementById('button10');
+    sampleElement10.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement10.classList.contains('active')){
+            sampleElement10.classList.remove('active');
+        }
+        else{
+            sampleElement10.classList.add('active');
+        }
+    };
     </script>
 </html>
