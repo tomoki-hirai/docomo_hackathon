@@ -1,0 +1,12 @@
+button {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #000000;
+}
+
+.active {
+    background-color: red;
+    color: white;
+}
