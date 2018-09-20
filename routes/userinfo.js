@@ -25,5 +25,8 @@ router.get('/', function(req, res, next) {
 router.get('/detail', function(req, res, next) {
   userinfo.userinfo_detail(req,res)
 });
+router.get('/overview', function(req, res, next) {
+  userinfo.userinfo_detail(req,res)
+});
 
 module.exports = router;

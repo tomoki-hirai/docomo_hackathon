@@ -1,5 +1,56 @@
 <!doctype html>
 <html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/chat.css' />
+  </head>
+  <body>
+      <div class="chat-box">
+        <div class="chat-face"><img src="/images/chat/my.png" alt="" /></div>
+        <div class="chat-area">
+          <div class="chat-hukidashi" id = "text">/*吹き出しに入れたい内容を書きましょう。*/</div>
+        </div>
+      </div>
+      
+      <div class="chat-box2">
+      <div class="chat-face2"><img src="/images/chat/someone.png" alt="" /></div>
+      <div class="chat-area2">
+      <div class="chat-hukidashi2">/*吹き出しに入れたい内容を書きましょう。*/</div>
+      </div>
+      </div>
+      <form action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    
+    <!-- socket.ioをロードする -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    
+    <script>
+      var mydiv = document.getElementById("text");
+      mydiv.innerHTML = "test";
+      var socket = io();
+      $('form').submit(function(){
+        // メッセージを送信する
+        socket.emit('chat message', $('#m').val());
+        console.log('push')
+        $('#m').val('');
+        return false;
+      });
+      // メッセージを受信する
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg.value));
+            // var audio = new Audio();
+            // audio.src = "http://localhost:8888/"+msg;
+            // console.log(msg);
+            // audio.play();
+      });
+    </script>
+  </body>
+</html>
+
+<!-- <!doctype html>
+<html>
   <head>
     <title>Socket.IO chat</title>
     <style>
@@ -15,32 +66,6 @@
   </head>
   <body>
     <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-
-<!-- socket.ioをロードする -->
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-
-<script>
-  var socket = io();
-  $('form').submit(function(){
-    // メッセージを送信する
-    socket.emit('chat message', $('#m').val());
-    console.log('push')
-    $('#m').val('');
-    return false;
-  });
-  // メッセージを受信する
-  socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg.value));
-        // var audio = new Audio();
-        // audio.src = "http://localhost:8888/"+msg;
-        // console.log(msg);
-        // audio.play();
-  });
-</script>
 
   </body>
 </html>

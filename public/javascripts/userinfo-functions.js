@@ -9,10 +9,12 @@ const connection = mysql.createConnection({
 // table名
 const user_inofo_table = 'user_info';
 const detail_info_table = 'deteal_info';
+const overview_table = 'overview'
 
 // colum名
 const user_info_column = ['id','mail','property_id','name','good','addr'];
 const detail_info_column = ['id','detal','title','viwe_no'];
+const overview_column = ['id','party_tag','commitment','tag_abs_1','tag_abs_2','tag_abs_3']
 
 module.exports.userinfo = function(req,res){
     if(req.query.addr != undefined){
@@ -46,6 +48,22 @@ module.exports.userinfo = function(req,res){
 }
 
 module.exports.userinfo_detail = function(req,res){
+    if(req.query.id == undefined){
+        res.status(404).send('Sorry cant find that!');
+    }
+    sql = 'SELECT * FROM ' + overview_table + ' where ' + overview_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    console.log(sql);
+
+    str = ''
+    connection.query(sql,function (error, results, fields) {
+        if (error) throw error;
+        console.log(str)
+        res.send(results)
+        return str;
+    });
+}
+
+module.exports.overview = function(req,res){
     if(req.query.id == undefined){
         res.status(404).send('Sorry cant find that!');
     }
