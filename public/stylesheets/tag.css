@@ -10,3 +10,23 @@ button {
     background-color: red;
     color: white;
 }
+
+#site-box {
+    width : 600px;
+    
+}
+ 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+/*
+#site-box {
+    height: 100%;
+    background: #bbddff;
+}
+*/
