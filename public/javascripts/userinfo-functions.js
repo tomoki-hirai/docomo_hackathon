@@ -28,7 +28,7 @@ module.exports.userinfo = function(req,res){
     }else{
         if(req.query.property_id != undefined){
             // 立候補者だけが指定があるか
-            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[2] + '=' + '\''+ req.query.password +'\'' + ';'; 
+            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[2] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
         }else{
             // 何も指定なし
             sql = 'SELECT * FROM ' + user_inofo_table + ';';
