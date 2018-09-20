@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" href="./tag.css" type="text/css" />
+        <title>HTML, CSS and JavaScript demo</title>
+    </head>
+    <body>
+        <button id="button1">経済</button>
+        <button id="button2">福祉</button>
+        <button id="button3">インフラ</button>
+        <button id="button4">税金</button>
+    </body>
+    <script>
+    /*$(function(){
+    var btn = $('.sample1');
+    btn.click(function(){
+    btn.removeClass('active');
+    $(this).addClass('active');
+    });
+    });*/
+                    var sampleElement1 = document.getElementById('button1');
+                    sampleElement1.onclick = function() {
+                        // ここに#buttonをクリックしたら発生させる処理を記述する
+                        if(sampleElement1.classList.contains('active')){
+                    sampleElement1.classList.remove('active');
+                        }
+                        else{
+                    sampleElement1.classList.add('active');
+                        }
+                    };
+    var sampleElement2 = document.getElementById('button2');
+    sampleElement2.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement2.classList.contains('active')){
+            sampleElement2.classList.remove('active');
+        }
+        else{
+            sampleElement2.classList.add('active');
+        }
+    };
+    var sampleElement3 = document.getElementById('button3');
+    sampleElement3.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement3.classList.contains('active')){
+            sampleElement3.classList.remove('active');
+        }
+        else{
+            sampleElement3.classList.add('active');
+        }
+    };
+    var sampleElement4 = document.getElementById('button4');
+    sampleElement4.onclick = function() {
+        // ここに#buttonをクリックしたら発生させる処理を記述する
+        if(sampleElement4.classList.contains('active')){
+            sampleElement4.classList.remove('active');
+        }
+        else{
+            sampleElement4.classList.add('active');
+        }
+    };
+
+    </script>
+</html>
