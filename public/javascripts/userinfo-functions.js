@@ -34,7 +34,7 @@ module.exports.userinfo = function(req,res){
         //     str = str + json[i].name + ': ' + json[i].amount + '\n';
         // }
         console.log(str)
-        res.send(str)
+        res.send(results)
         return str;
     });
 }
