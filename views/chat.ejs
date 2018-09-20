@@ -20,9 +20,8 @@
     </form>
 
 <!-- socket.ioをロードする -->
-<script src="/socket.io/socket.io.js"></script>
+<script src="../node_modules/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="/audiojs/audio.min.js"></script>
 
 <script>
   var socket = io();
@@ -35,10 +34,10 @@
   // メッセージを受信する
   socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
-        var audio = new Audio();
-        audio.src = "http://192.168.43.180:3000/"+msg;
-        console.log(msg);
-        audio.play();
+        // var audio = new Audio();
+        // audio.src = "http://localhost:8888/"+msg;
+        // console.log(msg);
+        // audio.play();
   });
 </script>
 
