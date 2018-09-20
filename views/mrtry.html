@@ -10,7 +10,7 @@
   <body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../public/javascripts/main.js"></script>
   </body>
@@ -37,92 +37,64 @@
       <!-- Team Members Row -->
       <div class="row">
         <div id = "text1"></div>
+
           <script>
-            getLimit()
-            function getLimit(){
-              hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=2"
-              var url = hostURL; // リクエスト先URL
-              var request = new XMLHttpRequest();
-              request.onreadystatechange = function () {
-                if (request.readyState != 4) {
-                  // リクエスト中
-                } else if (request.status != 200) {
-                  // 失敗
-                } else {
-                  // 取得成功
-                  var results = JSON.parse(request.responseText);
-                  // document.getElementById("text").innerHTML = str(results)
-                  for (var i = 0; i < results.length; i++){
-                    id=results[i].id;
-                    pict=results[i].pict;
-                    name=results[i].name;
-                    good=results[i].good;
-                    addr=results[i].addr;
-                    // document.write()
-                    document.getElementById("text1").innerHTML +=
-                    '<div class="col-lg-4 col-sm-4 text-center mb-4">\
+              $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=2", function(results) {
+                for (var i = 0; i < results.length; i++){
+                  id=results[i].id;
+                  pict=results[i].pict;
+                  console.log(pict)
+                  name=results[i].name;
+                  good=results[i].good;
+                  addr=results[i].addr;
+                  document.getElementById("text1").innerHTML +=
+                  '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
                     <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
-                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>\
-                        <p class="card-text">Some example text.</p>\
+                    <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>'
+                  $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo/overview?id=" + id, function(call) {
+                    commitment=call[0].commitment;
+                    console.log(call[0].id)
+                    document.getElementById(call[0].id).innerHTML +=
+                        '<p class="card-text">' + commitment +  '</p>\
                         <a href="#" class="btn btn-primary">See Profile</a>\
                       </div>\
                     </div>'
+                  });
                   }
-
-                }
-              };
-              request.response = 'json';
-              request.open('GET', url);
-              request.send(null);
-            }
+                });
           </script>
       </div>
     </div>
   </div>
   <div id="tab2" class="tab-pane">
-    <!-- Page Content -->
     <div class="container-fluid">
       <!-- Team Members Row -->
       <div class="row">
         <div id = "text2"></div>
           <script>
-            getLimit()
-            function getLimit(){
-              hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=3"
-              var url = hostURL; // リクエスト先URL
-              var request = new XMLHttpRequest();
-              request.onreadystatechange = function () {
-                if (request.readyState != 4) {
-                  // リクエスト中
-                } else if (request.status != 200) {
-                  // 失敗
-                } else {
-                  // 取得成功
-                  var results = JSON.parse(request.responseText);
-                  // document.getElementById("text").innerHTML = str(results)
-                  for (var i = 0; i < results.length; i++){
-                    id=results[i].id;
-                    pict=results[i].pict;
-                    console.log(pict)
-                    name=results[i].name;
-                    good=results[i].good;
-                    addr=results[i].addr;
-                    document.getElementById("text2").innerHTML +=
-                    '<div class="col-lg-4 col-sm-4 text-center mb-4">\
-                      <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
-                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>\
-                        <p class="card-text">Some example text.</p>\
+              $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=3", function(results) {
+                for (var i = 0; i < results.length; i++){
+                  id=results[i].id;
+                  pict=results[i].pict;
+                  console.log(pict)
+                  name=results[i].name;
+                  good=results[i].good;
+                  addr=results[i].addr;
+                  document.getElementById("text2").innerHTML +=
+                  '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
+                    <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
+                    <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>'
+                  $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo/overview?id=" + id, function(call) {
+                    commitment=call[0].commitment;
+                    console.log(call[0].id)
+                    document.getElementById(call[0].id).innerHTML +=
+                        '<p class="card-text">' + commitment +  '</p>\
                         <a href="#" class="btn btn-primary">See Profile</a>\
                       </div>\
                     </div>'
+                  });
                   }
-
-                }
-              };
-              request.response = 'json';
-              request.open('GET', url);
-              request.send(null);
-            }
+                });
           </script>
       </div>
     </div>
