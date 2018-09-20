@@ -5,48 +5,37 @@
     <link rel='stylesheet' href='/stylesheets/chat.css' />
   </head>
   <body>
-      <div class="chat-box">
-        <div class="chat-face"><img src="/images/chat/my.png" alt="" /></div>
-        <div class="chat-area">
-          <div class="chat-hukidashi" id = "text">/*吹き出しに入れたい内容を書きましょう。*/</div>
-        </div>
-      </div>
-      
-      <div class="chat-box2">
-      <div class="chat-face2"><img src="/images/chat/someone.png" alt="" /></div>
-      <div class="chat-area2">
-      <div class="chat-hukidashi2">/*吹き出しに入れたい内容を書きましょう。*/</div>
-      </div>
-      </div>
+      <div id = messages></div>
       <form action="">
           <input id="m" autocomplete="off" /><button>Send</button>
       </form>
+      
     
     <!-- socket.ioをロードする -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     
     <script>
-      var mydiv = document.getElementById("text");
-      mydiv.innerHTML = "test";
       var socket = io();
       $('form').submit(function(){
+        message = $('#m').val()
         // メッセージを送信する
-        socket.emit('chat message', $('#m').val());
-        console.log('push')
-        $('#m').val('');
+        socket.emit('chat message', message);
+        insertMessage(0,message);
         return false;
       });
       // メッセージを受信する
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg.value));
+        console.log('receive')
+        insertMessage(1,msg.value);
             // var audio = new Audio();
             // audio.src = "http://localhost:8888/"+msg;
             // console.log(msg);
             // audio.play();
       });
-      function getLimit(id,tag_id){
-        var hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=2"
+      getThreadList(id=1);
+      function getThreadList(id,tag_id){
+        var hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/"
         var endpoint = "chat/thread_list"
         var query = ""
         if(id != undefined){
@@ -57,6 +46,7 @@
           return;
         }
         var url = hostURL + endpoint + query; // リクエスト先URL
+        console.log(url)
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
           if (request.readyState != 4) {
@@ -67,30 +57,73 @@
             // 取得成功
             var results = JSON.parse(request.responseText);
             // document.getElementById("text").innerHTML = str(results)
-            document.getElementById("text1").innerHTML = '<div id = "text"></div>'
+            // document.getElementById("text1").innerHTML = '<div id = "text"></div>'
             console.log(results)
             for (var i = 0; i < results.length; i++){
-              id=results[i].id;
-              pict=results[i].pict;
-              name=results[i].name;
-              good=results[i].good;
-              addr=results[i].addr;
-              // document.write()
-              document.getElementById("text").innerHTML +=
-              '<div class="col-lg-4 col-sm-6 text-center mb-4">\
-                <img class="card img-fluid d-block mx-auto" src="../public/images/島さとし.jpg"alt="">\
-                <div class="card-body"><h4 class="card-title">' + name + '</h4>\
-                  <p class="card-text">Some example text.</p>\
-                  <a href="#" class="btn btn-primary">See Profile</a>\
-                </div>\
-              </div>'
+              console.log('aaa')
+              getThread(thread_no=results[i].thread_no)
             }
-
           }
         };
         request.response = 'json';
         request.open('GET', url);
         request.send(null);
+      }
+      function getThread(thread_no){
+        var hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/"
+        var endpoint = "chat/thread"
+        var query = ""
+        if(thread_no != undefined){
+          query = "?thread_no=" + thread_no
+        }else{
+          console.log('return')
+          return;
+        }
+        var url = hostURL + endpoint + query; // リクエスト先URL
+        console.log(url)
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+          if (request.readyState != 4) {
+            // リクエスト中
+          } else if (request.status != 200) {
+            // 失敗
+          } else {
+            // 取得成功
+            var results = JSON.parse(request.responseText);
+            // document.getElementById("text").innerHTML = str(results)
+            // document.getElementById("text1").innerHTML = '<div id = "text"></div>'
+            console.log(results)
+            for (var i = 0; i < results.length; i++){
+              console.log('insert')
+              insertMessage(id=1,results[i].text)
+            }
+          }
+        };
+        request.response = 'json';
+        request.open('GET', url);
+        request.send(null);
+      }
+      function insertMessage(id,message){
+        var message_div = document.getElementById("messages");
+        text=''
+        if(id==0){
+          // 自分
+          text+='<div class="chat-box">';
+          text+='<div class="chat-face"><img src="/images/chat/my.png" alt="" /></div>';
+          text+='<div class="chat-area">';
+          text+='<div class="chat-hukidashi" id = "text">'+message+'</div>';
+          text+='</div>';
+          text+='</div>';
+        }else{
+          // 他人
+          text+='<div class="chat-box2">';
+          text+='<div class="chat-face2"><img src="/images/chat/someone.png" alt="" /></div>';
+          text+='<div class="chat-area2">';
+          text+='<div class="chat-hukidashi2">'+message+'</div>';
+          text+='</div>';
+          text+='</div>';
+        }
+        message_div.innerHTML += text;
       }
     </script>
   </body>
