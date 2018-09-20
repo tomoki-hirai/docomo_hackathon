@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
     host : 'localhost',
     user : 'mrtry',
     password : 'mrtry',
-    database: 'stock_db'
+    database: 'POLITICS_DB'
 });
 // table名
 const user_inofo_table = 'user_info';
