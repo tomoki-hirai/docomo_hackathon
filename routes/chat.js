@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+
+const chat = require('../public/javascripts/chat-functions')
 // socket
 // var socket = require('./module/module_socket');
 
@@ -20,6 +22,12 @@ router.get('/', function(req, res, next) {
   //     io.emit('chat message', msg);
   //   });
   // });
+});
+router.get('/thread_list', function(req, res, next) {
+  chat.thread_list(req,res)
+});
+router.get('/thread', function(req, res, next) {
+  userinfo.thread(req,res)
 });
 
 module.exports = router;

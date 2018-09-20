@@ -17,8 +17,12 @@ const thread_column = ['thread_no','time','id','replay','text'];
 module.exports.thread_list = function(req,res){
     if(req.query.id == undefined){
         res.status(404).send('Sorry cant find that!');
+        sql = 'SELECT * FROM ' + thread_list_table + ' where ' + thread_list_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
     }
-    sql = 'SELECT * FROM ' + thread_list_table + ' where ' + thread_list_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    if(req.query.tag_id == undefined){
+        res.status(404).send('Sorry cant find that!');
+        sql = 'SELECT * FROM ' + thread_list_table + ' where ' + thread_list_column[1] + '=' + '\''+ req.query.tag_id +'\'' + ';'; 
+    }
     console.log(sql);
 
     str = ''
@@ -31,26 +35,11 @@ module.exports.thread_list = function(req,res){
 }
 
 
-module.exports.userinfo = function(req,res){
-    if(req.query.addr != undefined){
-        if(req.query.property_id != undefined){
-            // 住所と立候補者が指定されている
-            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ' and ' 
-                + user_info_column[2] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
-            // sql = 'SELECT * FROM ' + stock_table + ' order by ' + stock_column[0] + ';';
-        }else{
-            // 住所だけが指定されている
-            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[5] + '=' + '\''+ req.query.addr +'\'' + ';'; 
-        }
-    }else{
-        if(req.query.property_id != undefined){
-            // 立候補者だけが指定があるか
-            sql = 'SELECT * FROM ' + user_inofo_table + ' where ' + user_info_column[2] + '=' + '\''+ req.query.property_id +'\'' + ';'; 
-        }else{
-            // 何も指定なし
-            sql = 'SELECT * FROM ' + user_inofo_table + ';';
-        }
+module.exports.thread = function(req,res){
+    if(req.query.thread_no == undefined){
+        res.status(404).send('Sorry cant find that!');
     }
+    sql = 'SELECT * FROM ' + thread_table + ' where ' + thread_column[0] + '=' + '\''+ req.query.thread_no +'\'' + ';'; 
     console.log(sql);
 
     str = ''
