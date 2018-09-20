@@ -50,6 +50,7 @@ module.exports.userinfo = function(req,res){
 module.exports.userinfo_detail = function(req,res){
     if(req.query.id == undefined){
         res.status(404).send('Sorry cant find that!');
+        return;
     }
     sql = 'SELECT * FROM ' + overview_table + ' where ' + overview_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
     console.log(sql);
@@ -66,6 +67,7 @@ module.exports.userinfo_detail = function(req,res){
 module.exports.overview = function(req,res){
     if(req.query.id == undefined){
         res.status(404).send('Sorry cant find that!');
+        return;
     }
     sql = 'SELECT * FROM ' + detail_info_table + ' where ' + detail_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
     console.log(sql);
