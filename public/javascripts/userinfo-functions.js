@@ -52,7 +52,7 @@ module.exports.userinfo_detail = function(req,res){
         res.status(404).send('Sorry cant find that!');
         return;
     }
-    sql = 'SELECT * FROM ' + overview_table + ' where ' + overview_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    sql = 'SELECT * FROM ' + detail_info_table + ' where ' + detail_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
     console.log(sql);
 
     str = ''
@@ -69,7 +69,7 @@ module.exports.overview = function(req,res){
         res.status(404).send('Sorry cant find that!');
         return;
     }
-    sql = 'SELECT * FROM ' + detail_info_table + ' where ' + detail_info_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
+    sql = 'SELECT * FROM ' + overview_table + ' where ' + overview_column[0] + '=' + '\''+ req.query.id +'\'' + ';'; 
     console.log(sql);
 
     str = ''
