@@ -7,6 +7,7 @@
         <title>ジャンルを選んでね</title>
     </head>
     <body>
+        <div id="site-box">
         <button id="button1">国際情勢</button>
         <button id="button2">国内情勢</button>
         <button id="button3">税率</button>
@@ -17,6 +18,9 @@
         <button id="button8">総理大臣</button>
         <button id="button9">軍事</button>
         <button id="button10">教育</button>
+        <button class="square_btn"onclick="nextpage()">次へ進む</button>
+       <!-- <input type="button" value="次へ進む" class="square_btn"onclick="nextpage()">-->
+        </div>
     </body>
     <script>
     /*$(function(){
@@ -26,6 +30,9 @@
     $(this).addClass('active');
     });
     });*/
+    function nextpage(){
+        location.href = "/Users/ryoya/docomo/docomo_hackathon/views/main.html";
+    }
     var sampleElement1 = document.getElementById('button1');
     sampleElement1.onclick = function() {
         // ここに#buttonをクリックしたら発生させる処理を記述する

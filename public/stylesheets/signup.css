@@ -11,13 +11,14 @@ body, html {
 }
 
 .card-container.card {
-    max-width: 350px;
+    width: 500px;
+    height: 800px;
     padding: 40px 40px;
 }
 
 .btn {
     font-weight: 700;
-    height: 36px;
+    height: 50px;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
@@ -84,8 +85,8 @@ body, html {
 .form-signin #inputRegion
 {
     direction: ltr;
-    height: 44px;
-    font-size: 16px;
+    height: 88px;
+    font-size: 32px;
 }
 
 .form-signin input[type=email],
@@ -117,8 +118,8 @@ body, html {
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
-    font-size: 14px;
-    height: 36px;
+    font-size: 28px;
+    height: 52px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -137,10 +138,15 @@ body, html {
 
 .forgot-password {
     color: rgb(104, 145, 162);
+    font-size: 28px;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+.checkbox{
+    font-size: 28px;
 }
