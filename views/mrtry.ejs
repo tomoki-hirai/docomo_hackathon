@@ -38,6 +38,10 @@
       <div class="row">
         <div id = "text1"></div>
           <script>
+            function nextpage(id){
+                // alert(id);
+                location.href = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/tabu?"+id;
+            }
             var imageurl = "images/"
               $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=2", function(results) {
                 count = 0
@@ -59,19 +63,19 @@
                     if (call[0].id == 0) {
                       document.getElementById(call[0].id).innerHTML +=
                           '<p class="card-text">' + commitment +  ' #農業</p>\
-                          <a href="#" class="btn btn-primary">詳細</a>\
+                          <a href="#" class="btn btn-primary"id="bt1"onclick="nextpage(this.id)">詳細</a>\
                         </div>\
                       </div>'
                     } else if (call[0].id == 2) {
                       document.getElementById(call[0].id).innerHTML +=
                           '<p class="card-text">' + commitment +  ' #医療</p>\
-                          <a href="#" class="btn btn-primary">詳細</a>\
+                          <a href="#" class="btn btn-primary"id="bt2"onclick="nextpage(this.id)">詳細</a>\
                         </div>\
                       </div>'
                     } else{
                       document.getElementById(call[0].id).innerHTML +=
                         '<p class="card-text">' + commitment +  '</p>\
-                        <a href="#" class="btn btn-primary">詳細</a>\
+                        <a href="#" class="btn btn-primary"id="bt'+call[0].id+'"onclick="nextpage(this.id)">詳細</a>\
                       </div>\
                     </div>'
                   }
@@ -100,20 +104,20 @@
                     document.getElementById("text2").innerHTML +=
                     '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
                       <img class="card img-fluid d-block mx-auto img-responsive" src="'+imageurl + pict + '">\
-                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '' +'</h4>'
+                      <div class="card-body"><h4 class="card-title""onclick="nextpage()">' + name + '    +' + good + '' +'</h4>'
                   }
                   else {
                     document.getElementById("text2").innerHTML +=
                     '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
                       <img class="card img-fluid d-block mx-auto img-responsive" src="'+imageurl + pict + '">\
-                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>'
+                      <div class="card-body"><h4 class="card-title""onclick="nextpage()">' + name + '    +' + good + '</h4>'
                   }
                   $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo/overview?id=" + id, function(call) {
                     commitment=call[0].commitment;
                     console.log(call[0].id)
                     document.getElementById(call[0].id).innerHTML +=
                         '<p class="card-text">' + commitment +  '</p>\
-                        <a href="#" class="btn btn-primary">詳細</a>\
+                        <a href="#" class="btn btn-primary""onclick="nextpage()">詳細</a>\
                       </div>\
                     </div>'
                   });

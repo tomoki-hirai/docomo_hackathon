@@ -66,12 +66,41 @@
      
 	 <div id="wrap"></div>
 	 <div id="wrap2"></div>
-@<script>
+<script>
+  var val = getUrlVars();
+  if(val[0] == undefined){
+    arg_id = 2
+  }else{
+    arg_id = val[0].slice(1);
+    arg_id = arg_id.slice(1);
+  }
+  console.log(arg_id)
+
+/**
+ * URL解析して、クエリ文字列を返す
+ * @returns {Array} クエリ文字列
+ */
+function getUrlVars()
+{
+    var vars = [], max = 0, hash = "", array = "";
+    var url = window.location.search;
+
+        //?を取り除くため、1から始める。複数のクエリ文字列に対応するため、&で区切る
+    hash  = url.slice(1).split('&');
+    max = hash.length;
+    for (var i = 0; i < max; i++) {
+        array = hash[i].split('=');    //keyと値に分割。
+        vars.push(array[0]);    //末尾にクエリ文字列のkeyを挿入。
+        vars[array[0]] = array[1];    //先ほど確保したkeyに、値を代入。
+    }
+
+    return vars;
+}
   var imageurl = "/images/"
   // getLimit(5)
-  getUserInfo(2);
-  getOverview(2);
-getUserDetail(2);
+  getUserInfo(arg_id);
+  getOverview(arg_id);
+getUserDetail(arg_id);
       function getUserInfo(id){
 		  
       hostURL = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?id="+id
