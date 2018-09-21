@@ -4,7 +4,7 @@
     position: relative;
     padding: 5px 5px 5px 42px;
     background: #77c3df;
-    font-size: 20px;
+    font-size: 2em;
     width:30%;
     color: white;
     margin-left: -33px;
@@ -26,7 +26,7 @@
     position: relative;
     padding: 5px 5px 5px 42px;
     background: #77c3df;
-    font-size: 20px;
+    font-size: 2em;
     width:30%;
     color: white;
     margin-left: -33px;
@@ -103,6 +103,7 @@
     padding-left: 25px;
     margin-top: 10px;
     margin-bottom: 20px;
+    font-size: 3em;
 }
 
 #name:before {
@@ -129,6 +130,7 @@
     margin-top: 10px;
     position: relative;
     padding-left: 25px;
+    font-size: 3em;
 }
 
 #tag_abs_1:before {
@@ -155,6 +157,7 @@
     margin-top: 10px;
     position: relative;
     padding-left: 25px;
+    font-size: 3em;
 }
 
 #tag_abs_2:before {
@@ -181,6 +184,7 @@
     margin-top: 10px;
     position: relative;
     padding-left: 25px;
+    font-size: 3em;
 }
 
 #tag_abs_3:before {
