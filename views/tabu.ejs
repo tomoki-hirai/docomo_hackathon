@@ -1,9 +1,14 @@
 <!--BootstrapSÉKvČCSSĆJavaScriptđÇÝÝ-->
 
-<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" crossorigin="anonymous">
+<!--<link rel="stylesheet" href="/Users/ryoya/docomo/docomo_hackathon/public/stylesheets/main.css" crossorigin="anonymous">-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- <link rel="stylesheet" href="/Users/ryoya/docomo/docomo_hackathon/public/stylesheets/tabu.css" type="text/css" /> -->
+<link rel="stylesheet" href="/stylesheets/tabu.css" type="text/css" />
 
 <div class="p-3">
   <!-- ^u{^Ş -->
@@ -17,9 +22,11 @@
     <li class="nav-item">
       <a href="#tab3" class="nav-link" data-toggle="tab">`bg</a>
     </li>
+    <!--
     <li class="nav-item">
       <a href="#tab4" class="nav-link" data-toggle="tab">^u4</a>
     </li>
+     -->
   </ul>
 
   <!--^uĚRecŞ-->
@@ -33,34 +40,34 @@
       </div>
         
 	<table>
-        <tr>
-          <th><th width="200">źO</th>
-          <th><th width="200">Ož</th>
-        </tr>
-        <tr>
-          <td><td wigth="200" id=name></td>
-	  <td><td wigth="200" id="tag_abs_1"></td>
-	      <td wigth="200" id="tag_abs_2"></td>
-	      <td wigth="200" id="tag_abs_3"></td>
-	  </td>
-        </tr>
+        
+          <div width="200" id=name_list >źO</div>
+          <!--<div width="200">Ož</div>-->
+        
+        
+          <div wigth="200" id=name></div>
+              <div width="200" id=tag_abs_list>Ož</div>
+	  <div wigth="200" id="tag_abs_1"></div>
+	      <div wigth="200" id="tag_abs_2"></div>
+	      <div wigth="200" id="tag_abs_3"></div>
+	  
+      
         
       </table>
-      <button type="button"onclick="window.open('Nćurl')"style="background-color:salmon;"
- >ßé</button>
+      <button type="button"onclick="window.open('Nćurl')">ßé</button>
       </p>
     </div>
 
     <div id="tab2" class="tab-pane">
 	<div align="center">
-	<p style="margin:30px;">
+	<p style="margin:20px;">
       <div id=image2>
           <!-- Ę^đ}ü -->
      
 	 <div id="wrap"></div>
 	 <div id="wrap2"></div>
 @<script>
-
+  var imageurl = "/images/"
   // getLimit(5)
   getUserInfo(2);
   getOverview(2);
@@ -92,9 +99,9 @@ getUserDetail(2);
               div2.innerHTML += results[i].name;
               console.log(results[i].name)
               var image_div1=document.getElementById('image1');
-              image_div1.innerHTML += '<img src="'+pict+'" alt="seizi" class="img-fluid">'
+              image_div1.innerHTML += '<img src="'+ imageurl +pict+'" alt="seizi" class="img-fluid">'
               var image_div2=document.getElementById('image2');
-              image_div2.innerHTML += '<img src="'+pict+'" alt="seizi" class="img-fluid">'
+              image_div2.innerHTML += '<img src="'+imageurl+pict+'" alt="seizi" class="img-fluid">'
             }
           }
         }
@@ -171,28 +178,29 @@ getUserDetail(2);
       request.send(null);
     }
   </script>
+<!--
   <table>
+      
     <tr>
       <th><th width="400" id=name_detail></th>'
     </tr>
+ 
     </table>
+  -->
    </div>
+      <br>
+      <div id=detail_list>~messeage~</div>
+      <div id=name_detail></div>
   </div>
 
-    <button type="button"onclick="window.open('Nćurl')"style="background-color:salmon;"
- >ßé</button>
+    <button type="button"onclick="window.open('Nćurl')">ßé</button>
     </div>
     <div id="tab3" class="tab-pane">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/photo3.jpg" alt="" class="img-fluid">
-    </div>
-    <div id="tab4" class="tab-pane">
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>  
+      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>  
       <script>
       jQuery(function($){
-            $('#tab4').load('/html/chat.html');
+            $('#tab3').load('/html/chat.html');
          });</script>
-  </body>
-</html>
     </div>
 </div>
 
