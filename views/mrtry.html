@@ -18,7 +18,7 @@
 <!--Bootstrap４に必要なCSSとJavaScriptを読み込み-->
 <header class="page-heading">
   <div class="container">
-    <h1>Government</h1>
+    <h1>government</h1>
   </div>
 </header>
 <ul class="nav nav-tabs nav-justified">
@@ -37,10 +37,11 @@
       <!-- Team Members Row -->
       <div class="row">
         <div id = "text1"></div>
-
           <script>
               $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo?property_id=2", function(results) {
+                count = 0
                 for (var i = 0; i < results.length; i++){
+                  count++
                   id=results[i].id;
                   pict=results[i].pict;
                   console.log(pict)
@@ -54,11 +55,25 @@
                   $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo/overview?id=" + id, function(call) {
                     commitment=call[0].commitment;
                     console.log(call[0].id)
-                    document.getElementById(call[0].id).innerHTML +=
+                    if (call[0].id == 0) {
+                      document.getElementById(call[0].id).innerHTML +=
+                          '<p class="card-text">' + commitment +  ' #農業</p>\
+                          <a href="#" class="btn btn-primary">詳細</a>\
+                        </div>\
+                      </div>'
+                    } else if (call[0].id == 2) {
+                      document.getElementById(call[0].id).innerHTML +=
+                          '<p class="card-text">' + commitment +  ' #医療</p>\
+                          <a href="#" class="btn btn-primary">詳細</a>\
+                        </div>\
+                      </div>'
+                    } else{
+                      document.getElementById(call[0].id).innerHTML +=
                         '<p class="card-text">' + commitment +  '</p>\
-                        <a href="#" class="btn btn-primary">See Profile</a>\
+                        <a href="#" class="btn btn-primary">詳細</a>\
                       </div>\
                     </div>'
+                  }
                   });
                   }
                 });
@@ -80,16 +95,24 @@
                   name=results[i].name;
                   good=results[i].good;
                   addr=results[i].addr;
-                  document.getElementById("text2").innerHTML +=
-                  '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
-                    <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
-                    <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>'
+                  if (i=1) {
+                    document.getElementById("text2").innerHTML +=
+                    '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
+                      <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
+                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '' +'</h4>'
+                  }
+                  else {
+                    document.getElementById("text2").innerHTML +=
+                    '<div id=' + id + ' class="col-lg-4 col-sm-4 text-center mb-4">\
+                      <img class="card img-fluid d-block mx-auto img-responsive" src="../public/images/' + pict + '">\
+                      <div class="card-body"><h4 class="card-title">' + name + '    +' + good + '</h4>'
+                  }
                   $.getJSON("http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/userinfo/overview?id=" + id, function(call) {
                     commitment=call[0].commitment;
                     console.log(call[0].id)
                     document.getElementById(call[0].id).innerHTML +=
                         '<p class="card-text">' + commitment +  '</p>\
-                        <a href="#" class="btn btn-primary">See Profile</a>\
+                        <a href="#" class="btn btn-primary">詳細</a>\
                       </div>\
                     </div>'
                   });
