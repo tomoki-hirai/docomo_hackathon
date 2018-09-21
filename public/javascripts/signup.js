@@ -84,6 +84,6 @@ function testLocalStorageData() {
 
 function jump(){
    
-        location.href = "/Users/ryoya/docomo/docomo_hackathon/views/tag.html";
+        location.href = "http://ec2-18-224-8-138.us-east-2.compute.amazonaws.com:3000/tag";
 }
 
